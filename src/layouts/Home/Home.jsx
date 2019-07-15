@@ -4,10 +4,8 @@ import { Route, Switch } from "react-router-dom";
 import PerfectScrollbar from "perfect-scrollbar";
 
 // core components
-import AdminNavbar from "components/Navbars/AdminNavbar.jsx";
+import HomeNavbar from "components/Navbars/HomeNavbar.jsx";
 import Footer from "components/Footer/Footer.jsx";
-import Sidebar from "components/Sidebar/Sidebar.jsx";
-import FixedPlugin from "components/FixedPlugin/FixedPlugin.jsx";
 
 import routes from "routes.js";
 
@@ -15,7 +13,7 @@ import logo from "assets/img/react-logo.png";
 
 var ps;
 
-class Admin extends React.Component {
+class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -36,20 +34,20 @@ class Admin extends React.Component {
     // }
   }
   componentWillUnmount() {
-    if (navigator.platform.indexOf("Win") > -1) {
+    // if (navigator.platform.indexOf("Win") > -1) {
       ps.destroy();
       document.documentElement.className += " perfect-scrollbar-off";
       document.documentElement.classList.remove("perfect-scrollbar-on");
-    }
+    // }
   }
   componentDidUpdate(e) {
     if (e.history.action === "PUSH") {
-      if (navigator.platform.indexOf("Win") > -1) {
+      // if (navigator.platform.indexOf("Win") > -1) {
         let tables = document.querySelectorAll(".table-responsive");
         for (let i = 0; i < tables.length; i++) {
           ps = new PerfectScrollbar(tables[i]);
         }
-      }
+      // }
       document.documentElement.scrollTop = 0;
       document.scrollingElement.scrollTop = 0;
       this.refs.mainPanel.scrollTop = 0;
@@ -94,42 +92,32 @@ class Admin extends React.Component {
     return (
       <>
         <div className="wrapper">
-          <Sidebar
-            {...this.props}
-            routes={routes}
-            bgColor={this.state.backgroundColor}
-            logo={{
-              outterLink: "https://www.blockcheckout.com/",
-              text: "BlockCheckout",
-              imgSrc: logo
-            }}
-            toggleSidebar={this.toggleSidebar}
-          />
+          
           <div
             className="main-panel"
             ref="mainPanel"
             data={this.state.backgroundColor}
           >
-            <AdminNavbar
+            <HomeNavbar
               {...this.props}
-              brandText={this.getBrandText(this.props.location.pathname)}
-              toggleSidebar={this.toggleSidebar}
-              sidebarOpened={this.state.sidebarOpened}
+              brandText="BlockCheckout"
+              // toggleSidebar={this.toggleSidebar}
+              // sidebarOpened={this.state.sidebarOpened}
             />
             <Switch>{this.getRoutes(routes)}</Switch>
-            {// we don't want the Footer to be rendered on map page
-            this.props.location.pathname.indexOf("maps") !== -1 ? null : (
+            {// we don't want the Footer to be rendered on home page
+            this.props.location.pathname.indexOf("") !== -1 ? null : (
               <Footer fluid />
             )}
           </div>
         </div>
-        <FixedPlugin
+        {/* <FixedPlugin
           bgColor={this.state.backgroundColor}
           handleBgClick={this.handleBgClick}
-        />
+        /> */}
       </>
     );
   }
 }
 
-export default Admin;
+export default Home;

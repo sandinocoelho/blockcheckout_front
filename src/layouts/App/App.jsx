@@ -25,7 +25,7 @@ class Admin extends React.Component {
     };
   }
   componentDidMount() {
-    // if (navigator.platform.indexOf("Win") > -1) {
+    if (navigator.platform.indexOf("Win") > -1) {
       document.documentElement.className += " perfect-scrollbar-on";
       document.documentElement.classList.remove("perfect-scrollbar-off");
       ps = new PerfectScrollbar(this.refs.mainPanel, { suppressScrollX: true });
@@ -33,7 +33,7 @@ class Admin extends React.Component {
       for (let i = 0; i < tables.length; i++) {
         ps = new PerfectScrollbar(tables[i]);
       }
-    // }
+    }
   }
   componentWillUnmount() {
     if (navigator.platform.indexOf("Win") > -1) {

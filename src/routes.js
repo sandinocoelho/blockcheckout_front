@@ -2,12 +2,22 @@ import Dashboard from "views/Dashboard.jsx";
 import Icons from "views/Icons.jsx";
 import Map from "views/Map.jsx";
 import Notifications from "views/Notifications.jsx";
+import Home from "views/Home.jsx";
 import Rtl from "views/Rtl.jsx";
 import TableList from "views/TableList.jsx";
 import Typography from "views/Typography.jsx";
 import UserProfile from "views/UserProfile.jsx";
 
 var routes = [
+  {
+    path: "/",
+    name: "Blockcheckout",
+    rtlName: "",
+    icon: "tim-icons icon-chart-pie-36",
+    component: Home,
+    layout: "/home",
+    invisible: true
+  },
   {
     path: "/dashboard",
     name: "Dashboard",
@@ -20,32 +30,32 @@ var routes = [
     path: "/blocks",
     name: "Blocks",
     rtlName: "الرموز",
-    icon: "tim-icons icon-components",
+    icon: "tim-icons icon-app",
     component: Icons,
+    layout: "/admin"
+  },
+  {
+    path: "/checkouts",
+    name: "Checkouts",
+    rtlName: "خرائط",
+    icon: "tim-icons icon-bag-16",
+    component: Map,
     layout: "/admin"
   },
   {
     path: "/wallet",
     name: "Wallet",
-    rtlName: "خرائط",
+    rtlName: "ملف تعريفي للمستخدم",
     icon: "tim-icons icon-wallet-43",
-    component: Map,
+    component: UserProfile,
     layout: "/admin"
   },
   {
-    path: "/notifications",
-    name: "Notifications",
+    path: "/affiliate",
+    name: "Affiliate Program",
     rtlName: "إخطارات",
     icon: "tim-icons icon-bell-55",
     component: Notifications,
-    layout: "/admin"
-  },
-  {
-    path: "/user-profile",
-    name: "User Profile",
-    rtlName: "ملف تعريفي للمستخدم",
-    icon: "tim-icons icon-single-02",
-    component: UserProfile,
     layout: "/admin"
   },
   {
@@ -63,14 +73,6 @@ var routes = [
     icon: "tim-icons icon-align-center",
     component: Typography,
     layout: "/admin"
-  },
-  {
-    path: "/rtl-support",
-    name: "RTL Support",
-    rtlName: "ار تي ال",
-    icon: "tim-icons icon-world",
-    component: Rtl,
-    layout: "/rtl"
   }
 ];
 export default routes;
